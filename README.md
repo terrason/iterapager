@@ -30,18 +30,23 @@ import java.util.List;
 
 public class Example1 {
     public static void main(String[] args) {
-//定义每页数据大小,这个参数会用于判断数据是否到达末尾，如果生产一批数据集合的大小少于这个值，就认为到达末尾了，后续不再调用生产者生产数据。千万不要大于这个值。
+        //定义每页数据大小,这个参数会用于判断数据是否到达末尾，
+        // 如果生产一批数据集合的大小少于这个值，就认为到达末尾了，
+        // 后续不再调用生产者生产数据。千万不要大于这个值。
         int batchSize = 512;
 
-// 使用构造函数创建 IteraPager 对象, pageable 表示当前分页批次
+        // 使用构造函数创建 IteraPager 对象, pageable 表示当前分页批次
         IteraPager<YourGracefulBean> pager = new IteraPager<>(batchSize, pageable -> {
-            // 定义如何加载数据。 pageable.page() - 当前页码，从1开始； pageable.limit() 分页大小，与batchSize一致； pageable.offset() - 当前数据偏移量，从0开始；
+            // 定义如何加载数据。 
+            // pageable.page() - 当前页码，从1开始； 
+            // pageable.limit() 分页大小，与batchSize一致；
+            // pageable.offset() - 当前数据偏移量，从0开始；
             List<YourGracefulBean> onePageBeans = dataService.loadData(pageable.page(), pageable.limit());
             // 直接返回这批数据，本文档为了演示分两行，建议合并成一行。
             return onePageBeans;
         });
 
-// 使用 for-each 遍历数据并逐一处理
+        // 使用 for-each 遍历数据并逐一处理
         for (YourGracefulBean obj : pager.flat()) {
             System.out.println(obj); // 演示打印
             //此处处理数据的业务代码，只要别缓存obj对象，obj可正常被垃圾回收
@@ -59,7 +64,9 @@ import com.capsulode.iterapager.Pager;
 
 public class Example2 {
     public static void main(String[] args) {
-// 使用 `IteraPager.ofOrdered` 创建 IteraPager 对象, p lastData 表示上次查询的最后一个元素，第一次查询为 null
+// 使用 `IteraPager.ofOrdered` 创建 IteraPager 对象,
+// p 表示分页参数（同示例1的pageable） 
+// lastData 表示上次查询的最后一个元素，第一次查询为 null
         Pager<YourGracefulBean> pager = Pager.ofOrdered(500,
                 (p, lastData) -> archiveService.findProcessableEfiles(lastData, p.getLimit()));
 /* 这里将最后一次数据传给业务服务层，后续代码需判断lastData是否为null，
