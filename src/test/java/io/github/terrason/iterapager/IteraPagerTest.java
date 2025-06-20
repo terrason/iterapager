@@ -1,4 +1,4 @@
-package com.capsulode.util.iterapager;
+package io.github.terrason.iterapager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

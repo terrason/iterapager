@@ -1,4 +1,4 @@
-package com.capsulode.util.iterapager;
+package io.github.terrason.iterapager;
 
 import lombok.Getter;
 import lombok.Setter;

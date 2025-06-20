@@ -2,11 +2,13 @@
 
 `IteraPager` 是一个用于处理大规模数据分页的工具类，支持通过批量生产者动态生成数据并逐一处理。它可以帮助开发者高效地处理无限大小的数据集合，避免一次性加载所有数据到内存中。
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## 关键点：
 
 - 懒加载：按需分页加载数据，避免一次性加载全部数据。
-- 流式处理：提供 flat() 和 concat() 方法，支持类似集合的遍历方式。
-- 有序优化：ofOrdered() 方法允许基于上一批数据的末尾元素优化查询（如 SQL 中的 WHERE id > lastId）。
+- 流式处理：提供 `flat()` 和 `concat()` 方法，支持类似集合的遍历方式。
+- 有序优化：`IteraPager.ofOrdered()` 方法允许基于上一批数据的末尾元素优化查询（如 SQL 中的 `WHERE id > lastId`）。
 - 内存安全：严格限制每批数据量（batchSize），防止生产者返回过量数据。
 
 ## 使用说明

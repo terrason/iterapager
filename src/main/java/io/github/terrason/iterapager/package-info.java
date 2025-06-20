@@ -4,6 +4,6 @@
  * @author lipei
  */
 @ParametersAreNonnullByDefault
-package com.capsulode.util.iterapager;
+package io.github.terrason.iterapager;
 
 import javax.annotation.ParametersAreNonnullByDefault;
