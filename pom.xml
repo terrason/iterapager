@@ -5,7 +5,7 @@
     <groupId>io.github.terrason</groupId>
     <artifactId>iterapager</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>iterapager</name>
 
@@ -74,14 +74,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs-annotations</artifactId>
             <version>4.9.3</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
